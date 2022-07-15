@@ -1,26 +1,15 @@
-function SalvarAnotacao(){
-    novaAnotacao = document.getElementById("anotacao").value
-    document.getElementById("anotacoes-salvas").innerHTML += "<textarea>" + 
-    novaAnotacao + "</textarea>"
-    document.getElementById("anotacao").value = " " 
-    alert("anotação salva \ncom sucesso")
-
+function novaAnotacao(){
+    let texto = document.getElementById("anotacao")
+    let linhaNova = `<div class="card-content white-text"><textarea></textarea></div><div class="card-action center"><a id="botaoEditar">Editar</a><a id="botaoDeletar">Deletar</a></div>`
+    document.getElementById("anotacoesSalvas").innerHTML += linhaNova
 }
 
-let btSalvar = document.getElementById("salvar")
+let btSalvar = document.getElementById("botaoSalvar")
 btSalvar.addEventListener("click", function(){
-    incluirUmaLinha()
-    limpar()
+    novaAnotacao()
     salvar()
 })
 
 function salvar(){
-localStorage.ListarVagas = document.getElementById("ListarVagas").innerHTML
-
-
+localStorage.anotacoesSalvas = document.getElementById("anotacoesSalvas").innerHTML
 }
-
-document.getElementById("botao-salvar").addEventListener("click", function(){
-    SalvarAnotacao()
-    navigator.vibrate(7000);
-})
