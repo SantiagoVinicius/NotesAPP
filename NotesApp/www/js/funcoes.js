@@ -1,14 +1,8 @@
 function novaAnotacao(){
     let texto = document.getElementById("anotacao").value
-    let linhaNova = `<div class="card-content white-text"><textarea>${texto}</textarea></div><div class="card-action center"><button onclick="btEditar(this)">Editar</button><button onclick="excluirUmaLinha (this)">Deletar</button></div>`
+    let linhaNova = `<div><div class="card-content white-text"><p contentEditable="true">${texto}</p></div><div class="card-action center"><button onclick="Editar()">Editar</button><button onclick="excluirUmaLinha (this)">Deletar</button></div></div>`
     document.getElementById("anotacoesSalvas").innerHTML += linhaNova
 }
-
-
-function limpar(){
-    document.getElementById("anotacao").value = ""
-}
-
 
 let btSalvar = document.getElementById("botaoSalvar")
 btSalvar.addEventListener("click", function(){
@@ -18,15 +12,23 @@ btSalvar.addEventListener("click", function(){
 })
 
 function salvar(){
-localStorage.anotacoesSalvas = document.getElementById("anotacoesSalvas").innerHTML
+    localStorage.anotacoesSalvas = document.getElementById("anotacoesSalvas").innerHTML
+    }
+
+function limpar(){
+    document.getElementById("anotacao").value = ""
 }
 
-//function excluirUmaLinha(botao)
-    //botao.parentNode.parentNode.remove()
-   // salvar()
-
-function btEditar(){
+function Editar(){
+    salvar()
+    console.log("Editar")
 }
+
+function excluirUmaLinha(botao){
+    botao.parentNode.parentNode.remove()
+    salvar()
+}
+
 
 function carregar(){
     if(localStorage.anotacoesSalvas){
