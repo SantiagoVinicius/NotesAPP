@@ -1,6 +1,8 @@
+var cod = 0
 function novaAnotacao(){
+    cod++
     let texto = document.getElementById("anotacao").value
-    let linhaNova = `<div><div class="card-content white-text"><p contentEditable="true">${texto}</p></div><div class="card-action center"><button onclick="Editar()">Editar</button><button onclick="excluirUmaLinha (this)">Deletar</button></div></div>`
+    let linhaNova = `<div><div class="card-content white-text"><p id="editfocus-${cod}" contentEditable="true">${texto}</p></div><div class="card-action center"> <button style="margin-left:10px;" class="waves-effect waves-light btn" onclick="focusInput(${cod})">Editar</button> <button onclick="SalvarEdicao()" class="waves-effect waves-light btn">Salvar</button> <button style="margin-left:10px;" class="waves-effect waves-light btn" onclick="excluirUmaLinha (this)">Deletar</button></div></div>`
     document.getElementById("anotacoesSalvas").innerHTML += linhaNova
 }
 
@@ -19,9 +21,14 @@ function limpar(){
     document.getElementById("anotacao").value = ""
 }
 
-function Editar(){
+function focusInput(codigo){
+    document.getElementById("editfocus-"+codigo).focus();
+}
+
+
+function SalvarEdicao(){
     salvar()
-    console.log("Editar")
+    alert("anotação salva \ncom sucesso")
 }
 
 function excluirUmaLinha(botao){
